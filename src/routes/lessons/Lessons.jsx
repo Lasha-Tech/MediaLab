@@ -1,7 +1,7 @@
 function Lessons() {
     return (
         <>
-awdawdawdaw
+        
         </>
     )
 }

@@ -10,7 +10,7 @@ function Header() {
 
             <LeftMenuCont>
 
-                <img src="./header-logo.svg" alt="Logo" />
+                <img src="../img/Header-logo.svg" alt="Logo" />
 
                 <MenuUl>
 
@@ -59,6 +59,7 @@ function Header() {
     background-color: #FFF;
     padding-left: 38px;
     padding-right: 38px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   `;
 
   const LeftMenuCont = styled.div`
@@ -116,13 +117,18 @@ function Header() {
     height: 42px;
     border-radius: 4px;
     background-color: #437CA4;
-    box-shadow: 0px 3px 21px 8px rgba(0, 0, 0, 0.25);
     outline: none;
     border: none;
+    filter: drop-shadow(0px -1px 4px rgba(0, 0, 0, 0.25)) drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));    
 
     color: #FFF;
     font-family: 'ninomtavruli';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
+
+    &:hover {
+      background-color: #fff;
+      color: #437CA4;
+    }
   `;
