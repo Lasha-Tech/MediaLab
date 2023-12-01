@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
 import Home from "./routes/Home/Home.jsx";
 import CourseDetails from "./routes/coureseDetails/CourseDetails.jsx";
-import Lessons from "./routes/lessons/Lessons.jsx";
+import {Header,Footer,Lessons} from './index.js'
 
 function App() {
     return (
         <>
+        <Header />
             <Router>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
@@ -13,6 +14,7 @@ function App() {
                     <Route path="/lessons" element={<Lessons/>}/>
                 </Routes>
             </Router>
+            <Footer />
         </>
     );
 }
