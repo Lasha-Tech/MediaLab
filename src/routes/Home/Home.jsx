@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import Footer from "../../shared/footer/Footer";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+
+import Slider from "react-slick";
 import React, { useState } from "react";
 const spanStyle = {};
 
@@ -11,7 +13,7 @@ const divStyle = {
   alignItems: "center",
   justifyContent: "center",
   backgroundSize: "100%",
-  backGroundRepeat: "no-repeat",
+  backgroundRepeat: "no-repeat",
   height: "574px",
   marginBottom: "100px",
 };
@@ -29,6 +31,13 @@ const slideImages = [
     caption: "Slide 3",
   },
 ];
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
 const CardData = [
     {
         title:'სიფრთხილე და კრიტიკული აზროვნება',
@@ -87,7 +96,12 @@ function Home() {
         <SliderText>რატომ უნდა აგვირჩიოთ ჩვენ?</SliderText>
       </SliderContainer>
 
-      <div className="slide-container">
+      <SliderContainerWrapper >
+      <DotsWrapper>
+          {slideImages.map((_, index) => (
+            <Dot key={index} active={index === currentSlide} />
+          ))}
+        </DotsWrapper>
         <Slide
           prevArrow={<PrevArrow>{"<"}</PrevArrow>}
           nextArrow={<NextArrow>{">"}</NextArrow>}
@@ -103,14 +117,12 @@ function Home() {
               ></div>
             </div>
           ))}
-        </Slide>
+          
+          
+                  </Slide>
 
-        <DotsWrapper>
-          {slideImages.map((_, index) => (
-            <Dot key={index} active={index === currentSlide} />
-          ))}
-        </DotsWrapper>
-      </div>
+       
+      </SliderContainerWrapper>
 
       <PopularCourses>
         <PopularHeader>
@@ -152,6 +164,8 @@ function Home() {
                     <PopularCardSpanStyles>{res.signal}</PopularCardSpanStyles>
                 </Flex>
             </PopularBottomWrapper>
+            <PopularCardButton>Learn More</PopularCardButton>
+<PopularCardBlur></PopularCardBlur>
           </PopularCard>
                    </> 
                 )
@@ -159,6 +173,28 @@ function Home() {
         
         </PopularWrapper>
       </PopularCourses>
+
+
+      <Slider {...settings}>
+      <div style={{margin:"50px"}}>
+        <h3>1</h3>
+      </div>
+      <div>
+        <h3>2</h3>
+      </div>
+      <div>
+        <h3>3</h3>
+      </div>
+      <div>
+        <h3>4</h3>
+      </div>
+      <div>
+        <h3>5</h3>
+      </div>
+      <div>
+        <h3>6</h3>
+      </div>
+    </Slider>
       {/* <Footer/> */}
     </ParentDiv>
   );
@@ -177,6 +213,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const SliderContainerWrapper = styled.div`
+  position: relative;
+`
 const HeaderTextContainer = styled.div``;
 const HeaderTextText = styled.p`
   color: #fff;
@@ -261,10 +300,10 @@ const PrevArrow = styled(ArrowButton)`
   margin-left: 40px;
 `;
 const DotsWrapper = styled.div`
-  position: absolute;
-  left: 47%;
-  bottom: -76%;
-  text-align: center;
+    position: absolute;
+    left: 44%;
+    top: 67%;
+    z-index: 9999999999;
 `;
 const Dot = styled.span`
   height: 4px;
@@ -303,12 +342,47 @@ const PopularCard = styled.div`
   overflow: hidden;
   border-radius: 8px;
   background: #fff;
-
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+
+`;
+const PopularCardButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 12px 17px;
+  border: none;
+  outline: none;
+  color: #294f36;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+z-index:99999;
+
+`;
+const PopularCardBlur = styled.button`
+&:hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    border-radius: 8px;
+background: rgba(0, 0, 0, 0.68);
+    width: 320px;
+    height: 392px;
+    filter: blur(0.5px); 
+}
+ 
+
 `;
 const PopularWrapper = styled.div`
   padding-bottom: 91px;
-  margin-left: 200px;
+  margin-left: 130px;
   display: flex;
 justify-content: center;
 gap: 135px;
