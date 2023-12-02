@@ -1,8 +1,19 @@
 
-
 *, ::after, ::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "ninomtavruli";
 }
+
+@font-face {
+  font-family: 'ninomtavruli';
+  src: url(../public/fonts/bpg_nino_mtavruli_normal.otf);
+}
+
+@font-face {
+  font-family: 'glaho';
+  src: url(../public/fonts/bpg_glaho.ttf);
+}
+
+

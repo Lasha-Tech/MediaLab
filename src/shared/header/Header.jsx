@@ -34,8 +34,6 @@ const Main = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding-left: 38px;
-  padding-right: 38px;
 `;
 
 const LeftMenuCont = styled.div`
@@ -45,6 +43,7 @@ const LeftMenuCont = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 38px;
 `;
 
 const MenuUl = styled.ul`
@@ -70,6 +69,7 @@ const Buttons = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-right: 38px;
 `;
 
 const SignIn = styled.button`
