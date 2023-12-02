@@ -172,6 +172,7 @@ function CourseDetails() {
                 </Cards>
 
             </ContentMain>
+
         </>
     )
 }
@@ -280,7 +281,7 @@ const ContentMain = styled.div`
   flex-direction: column;
   max-width: 1281px;
   width: 100%;
-  margin: 129px auto 0 auto;
+  margin: 129px auto 125px auto;
 `;
 
 const Coursegak = styled.h1`
