@@ -5,7 +5,6 @@ import styled from "styled-components";
 function Footer() {
 
     return (
-      <>
         <Main>
 
             <FooterMenu>
@@ -67,7 +66,6 @@ function Footer() {
             </SocMain>
             
         </Main>
-      </>
     )
   }
   
@@ -80,6 +78,7 @@ export default Footer;
     padding-top: 21px;
     background-color: #073453;
     text-align: center;
+    overflow-y: hidden;
   `;
 
   const FooterMenu = styled.div`
@@ -110,7 +109,7 @@ export default Footer;
   `;
 
   const Line = styled.hr`
-    width: 100vw;
+    width: 100%;
     height: 1px;
     margin-top: 16px;
     background-color: #FFF;
@@ -165,7 +164,7 @@ export default Footer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     margin-top: 71px;
     padding-right: 32px;
     padding-left: 42px;

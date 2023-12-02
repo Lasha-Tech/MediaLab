@@ -2,14 +2,17 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import styled from "styled-components"
+import { Link } from 'react-router-dom';
+import Footer from '../../shared/footer/Footer';
 
 function CourseDetails() {
     return (
         <>
             <BgCont>
                <Natura src="./img/natura.svg" />
-
+               <Link  style={{textDecoration: 'none'}} to='/'>
                <Back><LeftArrow src="./img/arrow-left.svg" alt="arrow" /> უკან</Back>
+               </Link>
 
                <Title>სიფრთხილე და კრიტიკული აზროვნებავ</Title>
 
@@ -32,7 +35,9 @@ function CourseDetails() {
                     რომლებიც თქვენს მიერ მიღებულ ცოდნას კიდევ უფრო გაამყარებს.
                </Content>
 
-               <Start>დაწყება</Start>
+              <Link to='/lessons'>
+                <Start>დაწყება</Start>
+              </Link>
             </BgCont>
 
             <ContentMain>
@@ -172,6 +177,7 @@ function CourseDetails() {
                 </Cards>
 
             </ContentMain>
+            <Footer/>
 
         </>
     )
@@ -182,7 +188,7 @@ export default CourseDetails
 
 const BgCont = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 815px;
   background-image: url(./img/Rectangle-79.svg);
   background-repeat: no-repeat;

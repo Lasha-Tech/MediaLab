@@ -1,25 +1,37 @@
+import { Link } from 'react-router-dom'
 import {styled} from 'styled-components'
+import Footer from '../../shared/footer/Footer'
 function Home() {
     return (
-        <HomeContainer>
-            <Wrapper>
-            <HeaderTextContainer>
-                    <HeaderTextText>ისწავლე და განვითარდი ჩვენთან ერთად!</HeaderTextText>
-                    <HeaderTextContent>ჩვენი მისიაა დავეხმაროთ ხალხს <span className='header__text-span'>მედიაწიგნიერების</span>  შესწავლაში და თანამედროვე სამყაროში არსებულ საფრთხეებთან გამკლავებაში</HeaderTextContent>
-                   
-                    <div>
-                    <Button>დაიწყე ახლა</Button>
+        <ParentDiv>
+            <HomeContainer>
+                <Wrapper>
+                <HeaderTextContainer>
+                        <HeaderTextText>ისწავლე და განვითარდი ჩვენთან ერთად!</HeaderTextText>
+                        <HeaderTextContent>ჩვენი მისიაა დავეხმაროთ ხალხს <span className='header__text-span'>მედიაწიგნიერების</span>  შესწავლაში და თანამედროვე სამყაროში არსებულ საფრთხეებთან გამკლავებაში</HeaderTextContent>
+                    
+                        <div>
+                        <Link to='/details'>
+                        <Button>დაიწყე ახლა</Button>                        
+                        </Link>
+                </div>
+            </HeaderTextContainer>
+            <div>
+                <img src="./img/pexels-karolina-grabowska-4218701 1.png" alt="" />
             </div>
-          </HeaderTextContainer>
-          <div>
-            <img src="./img/pexels-karolina-grabowska-4218701 1.png" alt="" />
-          </div>
-       
-            </Wrapper>
+        
+                </Wrapper>
+            </HomeContainer>
 
-        </HomeContainer>
+            <Footer/>
+        </ParentDiv>
+
     )
 }
+
+const ParentDiv = styled.div`
+    width: 100%;
+`
 const HomeContainer = styled.div`
     background: #0E3757;
     height: 815px;
@@ -70,7 +82,6 @@ border: none;
 outline: none;
 color: #FFF;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: BPG Nino Mtavruli;
 font-size: 24px;
 font-style: normal;
 font-weight: 400;

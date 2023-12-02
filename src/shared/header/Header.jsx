@@ -3,7 +3,6 @@ import styled from "styled-components";
 function Header() {
 
     return (
-      <>
         <Main>
 
             <LeftMenuCont>
@@ -42,7 +41,6 @@ function Header() {
             </Buttons>
 
         </Main>
-      </>
     )
   }
   
