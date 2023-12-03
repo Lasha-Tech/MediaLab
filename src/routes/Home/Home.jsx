@@ -117,8 +117,9 @@ function Home() {
             </HeaderTextContent>
 
             <div>
-              <Link to="/details">
-                <Button>დაიწყე ახლა</Button>
+              <Link to='/details'>
+              <Button>დაიწყე ახლა</Button>
+
               </Link>
             </div>
           </HeaderTextContainer>
