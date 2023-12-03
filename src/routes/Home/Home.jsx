@@ -224,8 +224,8 @@ function Home() {
    <SliderContainerWrapper >
      
         <Slide
-          // prevArrow={<NextArrow1>{"<"}</NextArrow1>}
-          // nextArrow={<PrevArrow2>{">"}</PrevArrow2>}
+          prevArrow={<NextArrow1>{"<"}</NextArrow1>}
+          nextArrow={<PrevArrow2>{">"}</PrevArrow2>}
           onChange={(previous, next) => setCurrentSlide2(next)}
         >
           {slideImages2.map((slideImage, index) => (
@@ -380,6 +380,7 @@ const NextArrow1 = styled(ArrowButton)`
 height: 100px;
 flex-shrink: 0;
 background-color: #8EABC0;
+display: none;
 `;
 
 const PrevArrow2 = styled(ArrowButton)`
@@ -394,6 +395,7 @@ const PrevArrow2 = styled(ArrowButton)`
 height: 100px;
 flex-shrink: 0;
 background-color: #8EABC0;
+display: none;
 `;
 const DotsWrapper = styled.div`
     position: absolute;
@@ -406,7 +408,7 @@ const DotsWrapper2 = styled.div`
 display: flex;
 justify-content: center;
 position: relative;
-bottom: 60px;
+bottom: 198px;
 `;
 const Dot = styled.span`
   height: 4px;
