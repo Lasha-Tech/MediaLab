@@ -9,7 +9,7 @@ function Footer() {
 
             <FooterMenu>
 
-                <img src="./img/Footer-logo.svg" alt="Logo" />
+                <img width='150' height='90' src="public\img\medialab logo-01 1 (1).png" alt="Logo" />
 
                 <MenuUl>
 
@@ -96,6 +96,7 @@ export default Footer;
     display: flex;
     justify-content: space-between;
     list-style-type: none;
+    cursor: pointer;
   `;
 
   const MenuLi = styled.li`
@@ -106,6 +107,10 @@ export default Footer;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    
+    &:hover {
+      opacity: 0.5;
+    }
   `;
 
   const Line = styled.hr`
@@ -158,6 +163,12 @@ export default Footer;
     font-style: normal;
     font-weight: 700;
     line-height: 10px;
+    cursor: pointer;
+
+    &:hover {
+      filter: drop-shadow(0px -1px 4px rgba(0, 0, 0, 0.25)) drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
+      opacity: 0.9;
+    }
   `;
 
   const SocMain = styled.div`
