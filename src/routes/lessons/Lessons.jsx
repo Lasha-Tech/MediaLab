@@ -1,31 +1,236 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import MobileStepper from '@mui/material/MobileStepper';
-import styled, {css} from "styled-components"
+import LessonData from '/data.json';
+import styled, {css} from "styled-components";
+import { Link } from 'react-router-dom';
 
 function Lessons() {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-  
-    const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-  
-    const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    const [progressPercent, setProgressPercent] = React.useState(10);
+    const [lessonNumber, setLessonNumber] = React.useState(0)
+    const [lessonNumberRender, setLessonNumberRender] = React.useState(1)
+    const [right, setRight] = React.useState(0)
+    const [wrong, setWrong] = React.useState(0)
+    const [selectedAnswer, setSelectedAnswer] = React.useState('');
+    const [selectedVariant, setSelectedVariant] = React.useState('')
+    // A 
+    const [answerStyleA, setAnswerStyleA] = React.useState({})
+    const [variantStyleA, setVariantStyleA] = React.useState({})
+    const [answerTextStyleA, setAnswerTextStyleA] = React.useState({})
+    // B 
+    const [answerStyleB, setAnswerStyleB] = React.useState({})
+    const [variantStyleB, setVariantStyleB] = React.useState({})
+    const [answerTextStyleB, setAnswerTextStyleB] = React.useState({})
+    // C 
+    const [answerStyleC, setAnswerStyleC] = React.useState({})
+    const [variantStyleC, setVariantStyleC] = React.useState({})
+    const [answerTextStyleC, setAnswerTextStyleC] = React.useState({})
+    // D 
+    const [answerStyleD, setAnswerStyleD] = React.useState({})
+    const [variantStyleD, setVariantStyleD] = React.useState({})
+    const [answerTextStyleD, setAnswerTextStyleD] = React.useState({})
 
-    const Progress = () => {
-        return (
-          <MobileStepper
-            variant="progress"
-            steps={9}
-            position="static"
-            activeStep={activeStep}
-            sx={{ maxWidth: '100%', background: 'transparent' }}
-          />
-        );
-      }
+    // const [wrongAnswer, setWrongAnswer] = React.useState('');
+    // const [rightAnswer, setRightAnswer] = React.useState('');
+    const [nextBtnDisabled, setNextBtnDisabled] = React.useState(true)
+    const [clicked, setClicked] = React.useState(false)
+console.log(selectedVariant)
+console.log(selectedAnswer)
+console.log(clicked)
+
+    // Right 
+    React.useEffect(() => {
+        if(selectedVariant == 'a') {
+            setAnswerStyleA({
+                border: '2px solid #039134',
+                color: '#039134',
+                background: '#FFF',
+                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            }),
+    
+            setAnswerTextStyleA({
+                color: '#039134'
+            }),
+    
+            setVariantStyleA({
+                border: '2px solid #039134',
+                color: '#039134'
+            })
+        } else if (selectedVariant == 'b') {
+            setAnswerStyleB({
+                border: '2px solid #039134',
+                color: '#039134',
+                background: '#FFF',
+                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            }),
+    
+            setAnswerTextStyleB({
+                color: '#039134'
+            }),
+    
+            setVariantStyleB({
+                border: '2px solid #039134',
+                color: '#039134'
+            })
+        } else if (selectedVariant == 'c') {
+            setAnswerStyleC({
+                border: '2px solid #039134',
+                color: '#039134',
+                background: '#FFF',
+                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            }),
+    
+            setAnswerTextStyleC({
+                color: '#039134'
+            }),
+    
+            setVariantStyleC({
+                border: '2px solid #039134',
+                color: '#039134'
+            }) 
+        } else if(selectedVariant == 'd') {
+            setAnswerStyleD({
+                border: '2px solid #039134',
+                color: '#039134',
+                background: '#FFF',
+                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            }),
+    
+            setAnswerTextStyleD({
+                color: '#039134'
+            }),
+    
+            setVariantStyleD({
+                border: '2px solid #039134',
+                color: '#039134'
+            })  
+            } else {
+                setAnswerStyleA({}),
+                setAnswerTextStyleA({}),        
+                setVariantStyleA({})
+
+                setAnswerStyleB({}),
+                setAnswerTextStyleB({}),        
+                setVariantStyleB({})
+
+                setAnswerStyleC({}),
+                setAnswerTextStyleC({}),        
+                setVariantStyleC({})
+
+                setAnswerStyleD({}),
+                setAnswerTextStyleD({}),        
+                setVariantStyleD({})
+            }
+    }, [wrong, lessonNumber])
+
+
+    // Wrong
+    React.useEffect(() => {
+        if(selectedVariant == 'a') {
+            setAnswerStyleA({
+                border: '2px solid #CF0000',
+                color: '#CF0000',
+                background: '#FFF',
+                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            }),
+    
+            setAnswerTextStyleA({
+                color: '#CF0000'
+            }),
+    
+            setVariantStyleA({
+                border: '2px solid #CF0000',
+                color: '#CF0000'
+            })
+        } 
+        // else if (selectedVariant == 'b') {
+        //     setAnswerStyleB({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000',
+        //         background: '#FFF',
+        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        //     }),
+    
+        //     setAnswerTextStyleB({
+        //         color: '#CF0000'
+        //     }),
+    
+        //     setVariantStyleB({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000'
+        //     })
+        // } else if (selectedVariant == 'c') {
+        //     setAnswerStyleC({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000',
+        //         background: '#FFF',
+        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        //     }),
+    
+        //     setAnswerTextStyleC({
+        //         color: '#CF0000'
+        //     }),
+    
+        //     setVariantStyleC({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000'
+        //     }) 
+        // } else if(selectedVariant == 'd') {
+        //     setAnswerStyleD({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000',
+        //         background: '#FFF',
+        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        //     }),
+    
+        //     setAnswerTextStyleD({
+        //         color: '#CF0000'
+        //     }),
+    
+        //     setVariantStyleD({
+        //         border: '2px solid #CF0000',
+        //         color: '#CF0000'
+        //     })  
+        //     } 
+            else {
+                setAnswerStyleA({}),
+                setAnswerTextStyleA({}),        
+                setVariantStyleA({})
+
+                setAnswerStyleB({}),
+                setAnswerTextStyleB({}),        
+                setVariantStyleB({})
+
+                setAnswerStyleC({}),
+                setAnswerTextStyleC({}),        
+                setVariantStyleC({})
+
+                setAnswerStyleD({}),
+                setAnswerTextStyleD({}),        
+                setVariantStyleD({})
+            }
+    }, [wrong])
+
+    const handleConfirmClick = (rightAns) => {
+        if(selectedAnswer !== rightAns) {
+            setWrong(wrong + 1)
+            new Audio('wrongAudio.mp3').play()
+            wrongAudio.mp3
+
+        } else {
+            setRight(right + 1)
+            new Audio('rightAudio.mp3').play()
+        }
+        setNextBtnDisabled(false);
+        
+    }
+    
+    const handleNextClick = () => {
+        setProgressPercent(progressPercent + 10)
+        setLessonNumberRender(lessonNumberRender + 1);
+        setLessonNumber(lessonNumber + 1);
+        setNextBtnDisabled(true);
+        setSelectedAnswer('');
+        setSelectedVariant('')
+    }
 
     return (
         <ParentDiv>
@@ -37,24 +242,140 @@ function Lessons() {
                 </ExitButton>
 
                 {/* Progress */}
-                <Progress/>
+                <ProgressDiv>
+                    <ProgressTitleDiv>
+                        <ProgressTitle>
+                            თქვენი პროგრესი
+                        </ProgressTitle>
+                        <ProgressTitle style={{fontSize: 22, fontWeight: 700}}>
+                            {progressPercent}%
+                        </ProgressTitle>
+                    </ProgressTitleDiv>
+                    <ProgressLine>
+                        <Progress style={{width: `${progressPercent}%`}}/>
+                    </ProgressLine>
+                </ProgressDiv>
+
+                {/* Answer */}
+                <AnswerContainer>
+                    <RightAnswer>
+                        {right}
+                    </RightAnswer>
+                    <WrongAnswer>
+                        {wrong}
+                    </WrongAnswer>
+                </AnswerContainer>
+
+                {/* Lesson */}
+                {LessonData.map(current => {
+                    if(current.id === lessonNumber) {
+                        return (
+                            <LessonContainer>
+                            <LessonNumberTitle>
+                                გაკვეთილი {lessonNumberRender}
+                            </LessonNumberTitle>
+                            {/* Title */}
+                            <LessonTitle>
+                                {current.title}
+                            </LessonTitle>
+                            {/* Content */}
+                            <LessonText>
+                                {current.content}
+                            </LessonText>
+                            {/* Question */}
+                            <QuestionTitle>
+                                შეკითხვა:
+                            </QuestionTitle>
+                            <Question>
+                                {current.question}
+                            </Question>
+                            {/* Answers */}
+                            <AnswerDiv style={answerStyleA}
+                             onClick={() => {setSelectedAnswer(current.answers.a), setSelectedVariant('a')}}>
+                                <VariantDiv style={variantStyleA}>
+                                    ა
+                                </VariantDiv>
+                                <Answer style={answerTextStyleA}>
+                                {current.answers.a}
+                                </Answer>
+                            </AnswerDiv>
+
+                            <AnswerDiv style={answerStyleB}
+                             onClick={() => {setSelectedAnswer(current.answers.b), setSelectedVariant('b')}}>
+                                <VariantDiv style={variantStyleB}>
+                                    ბ
+                                </VariantDiv>
+                                <Answer style={answerTextStyleB}>
+                                {current.answers.b}
+                                </Answer>
+                            </AnswerDiv>
+
+                            <AnswerDiv style={answerStyleC}
+                             onClick={() => {setSelectedAnswer(current.answers.c), setSelectedVariant('c')}}>
+                                <VariantDiv style={variantStyleC}>
+                                    გ
+                                </VariantDiv>
+                                <Answer style={answerTextStyleC}>
+                                {current.answers.c}
+                                </Answer>
+                            </AnswerDiv>
+
+                            <AnswerDiv style={answerStyleD}
+                             onClick={() => {setSelectedAnswer(current.answers.d), setSelectedVariant('d')}}>
+                                <VariantDiv style={variantStyleD}>
+                                    დ
+                                </VariantDiv>
+                                <Answer style={answerTextStyleD}> 
+                                {current.answers.d}
+                                </Answer>
+                            </AnswerDiv>
+
+                            {/* Confirm */}
+                            <ConfirmDiv>
+                            {selectedAnswer === ''?
+                            <DisabledConfirmButton disabled>
+                                დადასტურება
+                            </DisabledConfirmButton>
+                            : clicked?
+                            <ConfirmButton disabled >
+                                დადასტურება
+                            </ConfirmButton>:
+                            <ConfirmButton onClick={() => {handleConfirmClick(current.right), setClicked(true)}} >
+                                დადასტურება
+                            </ConfirmButton>
+                            } 
+                            
+                            </ConfirmDiv>
+                        </LessonContainer> 
+                        )
+                    }
+                })}
             </MainDiv>
 
-            
-                {/* Footer */}
-                <FooterDiv>
-                    {/* Back Button */}
-                    <BackButton onClick={handleBack} disabled={activeStep === 0}>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
-                        უკან
-                    </BackButton>
+            {/* Footer */}
+            <FooterDiv>
+                {/* Back Button */}
+                {lessonNumber == 0? 
+                <DisabledBackButton>
+                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
+                    უკან
+                </DisabledBackButton>
+                :<BackButton onClick={() => {setLessonNumberRender(lessonNumberRender - 1), setLessonNumber(lessonNumber - 1)}}>
+                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
+                    უკან
+                </BackButton>}
 
-                    {/* Next Button */}
-                    <NextButton onClick={handleNext} disabled={activeStep === 8}>
-                        შემდეგი
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-                    </NextButton>
-                </FooterDiv>
+                {/* Next Button */}
+                {nextBtnDisabled? 
+                <DisabledNextButton>
+                    შემდეგი
+                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+                </DisabledNextButton>
+                :<NextButton onClick={() => handleNextClick()}>
+                    შემდეგი
+                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+                </NextButton>}
+            </FooterDiv>
         </ParentDiv>
     )
 }
@@ -73,7 +394,7 @@ const MainDiv = styled.div(
     css`
         width: 100%;
         height: 100%;
-        padding: 46px 297px;
+        padding: 46px 297px 120px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -105,6 +426,188 @@ const ExitButton = styled.div(
     `
 )
 
+const ProgressDiv = styled.div`
+    width: 100%;
+    margin-bottom: 40px;
+`
+
+const ProgressTitleDiv = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`
+const ProgressTitle = styled.p`
+    color: #0E3757;
+`
+
+const ProgressLine = styled.div`
+    width: 100%;
+    height: 6px;
+    background-color: #d9d9d9;
+    margin-top: 8px 0 44px;
+`
+
+const Progress = styled.div(
+    () => css`
+        height: 100%;
+        background-color: #437CA4;
+    `
+)
+
+const AnswerContainer = styled.div(
+    css`
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 24px;
+        margin-bottom: 24px;
+    `
+)
+
+const RightAnswer = styled.div(
+    css`
+        width: 86px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #AFEFC5;
+        color: #006C25;
+        font-size: 32px;
+        font-weight: 700; 
+        border-radius: 6px;
+`
+)
+
+const WrongAnswer = styled(RightAnswer)`
+    background-color: #F79191;
+    color: #730404;
+`
+const LessonContainer = styled.div(
+    css`
+        width: 100%;
+    `
+)
+
+const LessonNumberTitle = styled.p`
+    color: #000;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+`
+
+const LessonTitle = styled.p`
+    color: #0E3757;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+`
+
+const LessonText = styled.p`
+    color: #0E3757;
+    font-size: 22px;
+    line-height: 158.447%;
+    letter-spacing: 0.22px;
+    margin-bottom: 75px;
+`
+
+const QuestionTitle = styled.p`
+    color: #000;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 158.447%; 
+    letter-spacing: 0.22px;
+    margin-bottom: 35px;
+`
+
+const Question = styled.p`
+    color: #0E3757;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 158.447%;
+    letter-spacing: 0.2px;
+    margin-bottom: 55px;
+`
+
+const AnswerDiv = styled.div`
+    width: 100%;
+    height: 100px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    margin-bottom: 31px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 0 40px 0 25px;
+    color: #0E3757;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: none;
+        background: rgba(217, 217, 217, 0.35);
+    }
+`
+const VariantDiv = styled.div`
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #0E3757;
+    color: #0E3757;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6px;
+
+`
+
+const Answer = styled.p`
+    color: #0E3757;
+    font-size: 20px;
+
+`
+
+const ConfirmDiv = styled.div`
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+`
+
+const ConfirmButton = styled.div`
+    width: 166px;
+    height: 42px;
+    background-color: #437CA4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #fff;
+        color: #437CA4;
+        border: 2px solid #437CA4;
+    }
+`
+
+const DisabledConfirmButton = styled(ConfirmButton)`
+    background-color: rgba(135, 155, 181, 0.43);
+
+    &:hover {
+        background-color: rgba(135, 155, 181, 0.43);
+        color: #fff;
+        filter: none;
+        border: 2px solid transparent;
+    }
+`
+
 const FooterDiv = styled.div(
     css`
         width: 100%;
@@ -124,7 +627,7 @@ const FooterDiv = styled.div(
 const BackButton = styled(ExitButton)`
         width: 124px;
         height: 42px;
-        padding: 0 24px 0 14px;
+        padding: 5px 24px 0 14px;
         fill: #fff;
         margin: 0;
 
@@ -135,9 +638,27 @@ const BackButton = styled(ExitButton)`
 
 const NextButton = styled(BackButton)`
     width: 135px;
-    padding: 0 9px 0 16px;
+    padding: 5px 9px 0 16px;
 `
 
+const DisabledNextButton = styled(NextButton)`
+    background-color: rgba(135, 155, 181, 0.43);
+    border: 0;
+    filter: unset;
+
+    &:hover {
+        background-color: rgba(135, 155, 181, 0.43);
+        fill: #fff;
+        color: #fff
+    }
+`
+
+const DisabledBackButton = styled(DisabledNextButton)`
+    width: 124px;
+    height: 42px;
+    padding: 5px 24px 0 14px;
+    filter: unset;
+`
 
 
 
