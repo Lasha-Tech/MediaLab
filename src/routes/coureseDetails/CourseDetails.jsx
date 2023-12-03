@@ -4,10 +4,13 @@ import Stack from '@mui/material/Stack';
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import Footer from '../../shared/footer/Footer';
+import Header from '../../shared/header/Header';
 
 function CourseDetails() {
+
     return (
-        <>
+      <>
+            <Header/>
             <BgCont>
                <Natura src="./img/natura.svg" />
                <Link  style={{textDecoration: 'none'}} to='/'>
@@ -35,7 +38,7 @@ function CourseDetails() {
                     რომლებიც თქვენს მიერ მიღებულ ცოდნას კიდევ უფრო გაამყარებს.
                </Content>
 
-              <Link to='/lessons'>
+              <Link to='/lessons' onClick={() => {setWelcome(true)}}>
                 <Start>დაწყება</Start>
               </Link>
             </BgCont>
@@ -178,13 +181,11 @@ function CourseDetails() {
 
             </ContentMain>
             <Footer/>
-
-        </>
+            </>
     )
 }
 
 export default CourseDetails
-
 
 const BgCont = styled.div`
   position: relative;
@@ -220,6 +221,16 @@ const Back = styled.button`
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
+
+    cursor: pointer;
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: #2773ad;
+    color: #fff;
+    border: 2px solid #fff;
+    filter: none;
+  }
 `;
 
 const LeftArrow = styled.img`
@@ -280,6 +291,15 @@ const Start = styled.button`
   font-style: normal;
   font-weight: 400; 
   line-height: normal;
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: #2773ad;
+    color: #fff;
+    border: 2px solid #fff;
+    filter: none;
+  }
 `;
 
 const ContentMain = styled.div` 
@@ -368,6 +388,8 @@ const Seeall = styled.button`
   background-color: #437CA4;
   filter: drop-shadow(0px -1px 4px rgba(0, 0, 0, 0.25)) drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
   border: none;
+  border: 2px solid transparent;
+  cursor: pointer;
   border-radius: 4px;
   align-self: center;
   margin-top: 65px;
@@ -378,6 +400,13 @@ const Seeall = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  &:hover {
+    background-color: #FFF;
+    color: #437CA4;
+    border: 2px solid #437CA4;
+    filter: none;
+  }
 `;
 
 const RateTitle = styled.h1`

@@ -7,7 +7,6 @@ import styled, {css} from "styled-components";
 function App() {
     return (
         <AppDiv>
-            <Header/>
                 <Router>
                     <Routes>
                         <Route path="/" element={<Home/>}/>

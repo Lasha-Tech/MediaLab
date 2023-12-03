@@ -6,6 +6,7 @@ import "react-slideshow-image/dist/styles.css";
 
 import Slider from "react-slick";
 import React, { useState } from "react";
+import Header from "../../shared/header/Header";
 const spanStyle = {};
 
 const divStyle = {
@@ -65,29 +66,6 @@ const PrevArrows = (props) => (
 );
 
 
-const CardData = [
-    {
-        title:'სიფრთხილე და კრიტიკული აზროვნება',
-        img:'./img/idea.png',
-        signal:'ადვილი',
-        state:9,
-        people:222
-    },
-    {
-        title:'ინფორმაციის გაფილტვრა და მედიის შექმნა',
-        img:'./img/computer.png',
-        signal:'საშუალო',
-        state:10,
-        people:333
-    },
-    {
-        title:'სიფრთხილე და კრიტიკული აზროვნება',
-        img:'./img/phone.png',
-        signal:'საშუალო',
-        state:15,
-        people:444
-    }
-]
 
 function Home() {
   const settings = {
@@ -101,8 +79,13 @@ function Home() {
   };
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentSlide1, setCurrentSlide2] = useState(0);
+  const [courseHover, setCourseHover] = useState(false)
+  const [courseHoverSecond, setCourseHoverSecond] = useState(false)
+  const [courseHoverThird, setCourseHoverThird] = useState(false)
+
   return (
     <ParentDiv>
+      <Header/>
       <HomeContainer>
         <Wrapper>
           <HeaderTextContainer>
@@ -117,10 +100,12 @@ function Home() {
             </HeaderTextContent>
 
             <div>
-              <Link to='/details'>
+              {/* <Link to='/details'> */}
+              <a href='#kursebi'>
               <Button>დაიწყე ახლა</Button>
+              </a>
 
-              </Link>
+              {/* </Link> */}
             </div>
           </HeaderTextContainer>
           <div>
@@ -162,18 +147,27 @@ function Home() {
        
       </SliderContainerWrapper>
 
-      <PopularCourses>
+      <PopularCourses id='kursebi'>
         <PopularHeader>
           <PopularText>პოპულარული კურსები</PopularText>
           <PopularSeeMoreButton>იხილეთ ყველა</PopularSeeMoreButton>
         </PopularHeader>
         <PopularWrapper>
-            {CardData.map((res) => {
+            {/* {CardData.map((res) => {
                 return (
-                   <>
-                     <PopularCard>
-            <PopularCardImg src={res.img}></PopularCardImg>
-            <PopularCardTitle>{res.title}</PopularCardTitle>
+                   <> */}
+                     <PopularCard onMouseOver={() => setCourseHover(true)} onMouseLeave={() => setCourseHover(false)}>
+                     {courseHover && 
+                     <CourseHover>
+                      <Link style={{textDecoration: 'none'}} to='/details'>
+                    <StartButton>
+                      დაწყება
+                    </StartButton>
+                      </Link>
+
+                   </CourseHover>}
+            <PopularCardImg src='./img/idea.png'></PopularCardImg>
+            <PopularCardTitle>სიფრთხილე და კრიტიკული აზროვნება</PopularCardTitle>
             <PopularCardStarwrapper>
                 <Flex >
             <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
@@ -186,7 +180,7 @@ function Home() {
             <div>
             <Flex >
             <PopularCardStarImg src="./img/user.png"></PopularCardStarImg>
-            <PopularCardSpanStyles>{res.people}</PopularCardSpanStyles>
+            <PopularCardSpanStyles>256</PopularCardSpanStyles>
             </Flex>
             </div>
             
@@ -195,19 +189,112 @@ function Home() {
             <PopularBottomWrapper>
                 <Flex>
                     <PopularCardStarImg src="/img/note.png"></PopularCardStarImg>
-                    <PopularCardSpanStyles>{res.state}</PopularCardSpanStyles>
+                    <PopularCardSpanStyles>9</PopularCardSpanStyles>
                 </Flex>
                 <Flex>
                     <PopularCardStarImg src="./img/signal.png"></PopularCardStarImg>
-                    <PopularCardSpanStyles>{res.signal}</PopularCardSpanStyles>
+                    <PopularCardSpanStyles>ადვილი</PopularCardSpanStyles>
                 </Flex>
             </PopularBottomWrapper>
             
 <PopularCardBlur></PopularCardBlur>
           </PopularCard>
-                   </> 
+
+
+          {/* 2 */}
+          <PopularCard onMouseOver={() => setCourseHoverSecond(true)} onMouseLeave={() => setCourseHoverSecond(false)}>
+                     {courseHoverSecond && 
+                     <CourseHover>
+                      <Link style={{textDecoration: 'none'}} to='/details'>
+                    <StartButton>
+                      დაწყება
+                    </StartButton>
+                      </Link>
+
+                   </CourseHover>}
+            <PopularCardImg src='./img/computer.png'></PopularCardImg>
+            <PopularCardTitle>ინფორმაციის გაფილტვრა და მედიის შექმნა</PopularCardTitle>
+            <PopularCardStarwrapper>
+                <Flex >
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarText>5.0 (216  რეიტინგი)</PopularCardStarText>
+                </Flex>
+            <div>
+            <Flex >
+            <PopularCardStarImg src="./img/user.png"></PopularCardStarImg>
+            <PopularCardSpanStyles>301</PopularCardSpanStyles>
+            </Flex>
+            </div>
+            
+            </PopularCardStarwrapper>
+            <Line></Line>
+            <PopularBottomWrapper>
+                <Flex>
+                    <PopularCardStarImg src="/img/note.png"></PopularCardStarImg>
+                    <PopularCardSpanStyles>10</PopularCardSpanStyles>
+                </Flex>
+                <Flex>
+                    <PopularCardStarImg src="./img/signal.png"></PopularCardStarImg>
+                    <PopularCardSpanStyles>საშუალო</PopularCardSpanStyles>
+                </Flex>
+            </PopularBottomWrapper>
+            
+<PopularCardBlur></PopularCardBlur>
+          </PopularCard>
+
+
+
+          {/* 3 */}
+          <PopularCard onMouseOver={() => setCourseHoverThird(true)} onMouseLeave={() => setCourseHoverThird(false)}>
+                     {courseHoverThird && 
+                     <CourseHover>
+                      <Link style={{textDecoration: 'none'}} to='/details'>
+                    <StartButton>
+                      დაწყება
+                    </StartButton>
+                      </Link>
+
+                   </CourseHover>}
+            <PopularCardImg src='https://s3-alpha-sig.figma.com/img/4582/4c8a/2544d569d85505e5bcf1f2b8f0817abb?Expires=1702252800&Signature=CSqyWE8f6iKUuhlomDNBCLmnHlgtwXFe6KxSGaajy27FSt38-bjCNi8d6vNrmBXiIHXQuw~01JR7SBV2rnKn5LpimkYXq7wucghbMKkg2xJYItAufTZbM10Jr0SCrzD7XY4hH0y-GjgpvSpntkdtz6GJIwLJIZdtsyK7RSOKLU5oHXBQFDWSxCLgG8ueTvIgJ3L5lWFGV9WNy0djmXXKXm4vQtggi~QzyRUu~MjkxLsYq9onGJoMsYfMmtChp~HRsgJawFah-MbwY101Dj0yOtAPspdVoId1ALOfD36Rinw2JzV1rheqOJRNUsolJwRUEt8cBWs3eyrGO~MrciJ~cg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'></PopularCardImg>
+            <PopularCardTitle>ტენდენციების ამოცნობა მედიაში</PopularCardTitle>
+            <PopularCardStarwrapper>
+                <Flex >
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarImg src="./img/full-star.png"></PopularCardStarImg>
+            <PopularCardStarText>5.0 (216  რეიტინგი)</PopularCardStarText>
+                </Flex>
+            <div>
+            <Flex >
+            <PopularCardStarImg src="./img/user.png"></PopularCardStarImg>
+            <PopularCardSpanStyles>288</PopularCardSpanStyles>
+            </Flex>
+            </div>
+            
+            </PopularCardStarwrapper>
+            <Line></Line>
+            <PopularBottomWrapper>
+                <Flex>
+                    <PopularCardStarImg src="/img/note.png"></PopularCardStarImg>
+                    <PopularCardSpanStyles>15</PopularCardSpanStyles>
+                </Flex>
+                <Flex>
+                    <PopularCardStarImg src="./img/signal.png"></PopularCardStarImg>
+                    <PopularCardSpanStyles>საშუალო</PopularCardSpanStyles>
+                </Flex>
+            </PopularBottomWrapper>
+            
+<PopularCardBlur></PopularCardBlur>
+          </PopularCard>
+                   {/* </> 
                 )
-            })}
+            })} */}
         
         </PopularWrapper>
       </PopularCourses>
@@ -320,14 +407,24 @@ const Button = styled.button`
   border: none;
   outline: none;
   color: #fff;
+  text-decoration: none;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   border-radius: 6px;
+  border: 2px solid transparent;
   filter: drop-shadow(5px 5px 4px rgba(97, 137, 154, 0.6));
   margin-top: 71px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2773ad;
+    color: #fff;
+    border: 2px solid #fff;
+    filter: none;
+  }
 `;
 const SliderContainer = styled.div``;
 const SliderText = styled.h2`
@@ -339,7 +436,7 @@ const SliderText = styled.h2`
   line-height: 23.5px;
   letter-spacing: 2.8px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 130px;
   margin-bottom: 79px;
 `;
 
@@ -401,7 +498,7 @@ display: none;
 const DotsWrapper = styled.div`
     position: absolute;
     left: 44%;
-    top: 67%;
+    top: 80%;
     z-index: 9999999999;
 `;
 const DotsWrapper2 = styled.div`
@@ -409,7 +506,7 @@ const DotsWrapper2 = styled.div`
 display: flex;
 justify-content: center;
 position: relative;
-bottom: 198px;
+bottom: 90px;
 `;
 const Dot = styled.span`
   height: 4px;
@@ -460,6 +557,7 @@ const PopularCard = styled.div`
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in-out;
+  position: relative;
 
 `;
 const PopularCardButton = styled.button`
@@ -498,7 +596,7 @@ background: rgba(0, 0, 0, 0.68);
 `;
 const PopularWrapper = styled.div`
   padding-bottom: 91px;
-  margin-left: 130px;
+  margin-left: 0px;
   display: flex;
 justify-content: center;
 gap: 135px;
@@ -569,4 +667,41 @@ font-weight: 400;
 line-height: normal;
 margin-left: 5px;
 `
+
+const CourseHover = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.68);
+    position: absolute;
+    z-index: 10;
+  `
+
+  const StartButton = styled.div`
+    width: 120px;
+    height: 42px;
+    background-color: #4078A0;
+    color: #fff;
+    border: 2px solid #FFF;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #FFF;
+      color: #4078A0;
+      border: 2px solid #4078A0;
+      filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+  `
+
+
+
+  
+
 export default Home;

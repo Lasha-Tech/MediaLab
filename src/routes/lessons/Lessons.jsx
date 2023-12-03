@@ -1,7 +1,12 @@
 import * as React from 'react';
 import LessonData from '/data.json';
 import styled, {css} from "styled-components";
+import Header from '../../shared/header/Header';
+import Feedback from './Feedback';
 import { Link } from 'react-router-dom';
+import Thanks from './Thanks';
+import Hello from './Hello';
+import Exit from './Exit';
 
 function Lessons() {
     const [progressPercent, setProgressPercent] = React.useState(10);
@@ -28,354 +33,447 @@ function Lessons() {
     const [variantStyleD, setVariantStyleD] = React.useState({})
     const [answerTextStyleD, setAnswerTextStyleD] = React.useState({})
 
-    // const [wrongAnswer, setWrongAnswer] = React.useState('');
-    // const [rightAnswer, setRightAnswer] = React.useState('');
     const [nextBtnDisabled, setNextBtnDisabled] = React.useState(true)
     const [clicked, setClicked] = React.useState(false)
+    const [exit, setExit] = React.useState(false)
+    const [welcome, setWelcome] = React.useState(false)
+    const [goodBye, setGoodBye] = React.useState(false)
+    const [feedback, setFeedback] = React.useState(false)
+    const [thanks, setThanks] = React.useState(false)
+
 console.log(selectedVariant)
 console.log(selectedAnswer)
 console.log(clicked)
 
-    // Right 
-    React.useEffect(() => {
-        if(selectedVariant == 'a') {
-            setAnswerStyleA({
-                border: '2px solid #039134',
-                color: '#039134',
-                background: '#FFF',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-            }),
-    
-            setAnswerTextStyleA({
-                color: '#039134'
-            }),
-    
-            setVariantStyleA({
-                border: '2px solid #039134',
-                color: '#039134'
-            })
-        } else if (selectedVariant == 'b') {
-            setAnswerStyleB({
-                border: '2px solid #039134',
-                color: '#039134',
-                background: '#FFF',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-            }),
-    
-            setAnswerTextStyleB({
-                color: '#039134'
-            }),
-    
-            setVariantStyleB({
-                border: '2px solid #039134',
-                color: '#039134'
-            })
-        } else if (selectedVariant == 'c') {
-            setAnswerStyleC({
-                border: '2px solid #039134',
-                color: '#039134',
-                background: '#FFF',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-            }),
-    
-            setAnswerTextStyleC({
-                color: '#039134'
-            }),
-    
-            setVariantStyleC({
-                border: '2px solid #039134',
-                color: '#039134'
-            }) 
-        } else if(selectedVariant == 'd') {
-            setAnswerStyleD({
-                border: '2px solid #039134',
-                color: '#039134',
-                background: '#FFF',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-            }),
-    
-            setAnswerTextStyleD({
-                color: '#039134'
-            }),
-    
-            setVariantStyleD({
-                border: '2px solid #039134',
-                color: '#039134'
-            })  
-            } else {
-                setAnswerStyleA({}),
-                setAnswerTextStyleA({}),        
-                setVariantStyleA({})
+React.useEffect(() => {
+    setWelcome(true)
+    setTimeout(() => {
+        setWelcome(false)
+    }, 2500)
+}, [])
 
-                setAnswerStyleB({}),
-                setAnswerTextStyleB({}),        
-                setVariantStyleB({})
+// Wrong
+React.useEffect(() => {
+    if(selectedVariant == 'a') {
+        setAnswerStyleA({
+            border: '2px solid #CF0000',
+            color: '#CF0000',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
 
-                setAnswerStyleC({}),
-                setAnswerTextStyleC({}),        
-                setVariantStyleC({})
+        setAnswerTextStyleA({
+            color: '#CF0000'
+        }),
 
-                setAnswerStyleD({}),
-                setAnswerTextStyleD({}),        
-                setVariantStyleD({})
-            }
-    }, [wrong, lessonNumber])
+        setVariantStyleA({
+            border: '2px solid #CF0000',
+            color: '#CF0000'
+        })
+    } else if (selectedVariant == 'b') {
+        setAnswerStyleB({
+            border: '2px solid #CF0000',
+            color: '#CF0000',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
 
+        setAnswerTextStyleB({
+            color: '#CF0000'
+        }),
 
-    // Wrong
-    React.useEffect(() => {
-        if(selectedVariant == 'a') {
-            setAnswerStyleA({
-                border: '2px solid #CF0000',
-                color: '#CF0000',
-                background: '#FFF',
-                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-            }),
-    
-            setAnswerTextStyleA({
-                color: '#CF0000'
-            }),
-    
-            setVariantStyleA({
-                border: '2px solid #CF0000',
-                color: '#CF0000'
-            })
-        } 
-        // else if (selectedVariant == 'b') {
-        //     setAnswerStyleB({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000',
-        //         background: '#FFF',
-        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        //     }),
-    
-        //     setAnswerTextStyleB({
-        //         color: '#CF0000'
-        //     }),
-    
-        //     setVariantStyleB({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000'
-        //     })
-        // } else if (selectedVariant == 'c') {
-        //     setAnswerStyleC({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000',
-        //         background: '#FFF',
-        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        //     }),
-    
-        //     setAnswerTextStyleC({
-        //         color: '#CF0000'
-        //     }),
-    
-        //     setVariantStyleC({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000'
-        //     }) 
-        // } else if(selectedVariant == 'd') {
-        //     setAnswerStyleD({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000',
-        //         background: '#FFF',
-        //         boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-        //     }),
-    
-        //     setAnswerTextStyleD({
-        //         color: '#CF0000'
-        //     }),
-    
-        //     setVariantStyleD({
-        //         border: '2px solid #CF0000',
-        //         color: '#CF0000'
-        //     })  
-        //     } 
-            else {
-                setAnswerStyleA({}),
-                setAnswerTextStyleA({}),        
-                setVariantStyleA({})
+        setVariantStyleB({
+            border: '2px solid #CF0000',
+            color: '#CF0000'
+        })
+    } else if (selectedVariant == 'c') {
+        setAnswerStyleC({
+            border: '2px solid #CF0000',
+            color: '#CF0000',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
 
-                setAnswerStyleB({}),
-                setAnswerTextStyleB({}),        
-                setVariantStyleB({})
+        setAnswerTextStyleC({
+            color: '#CF0000'
+        }),
 
-                setAnswerStyleC({}),
-                setAnswerTextStyleC({}),        
-                setVariantStyleC({})
+        setVariantStyleC({
+            border: '2px solid #CF0000',
+            color: '#CF0000'
+        }) 
+    } else if(selectedVariant == 'd') {
+        setAnswerStyleD({
+            border: '2px solid #CF0000',
+            color: '#CF0000',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
 
-                setAnswerStyleD({}),
-                setAnswerTextStyleD({}),        
-                setVariantStyleD({})
-            }
-    }, [wrong])
+        setAnswerTextStyleD({
+            color: '#CF0000'
+        }),
 
-    const handleConfirmClick = (rightAns) => {
-        if(selectedAnswer !== rightAns) {
-            setWrong(wrong + 1)
-            new Audio('wrongAudio.mp3').play()
-            wrongAudio.mp3
+        setVariantStyleD({
+            border: '2px solid #CF0000',
+            color: '#CF0000'
+        })  
+    } else {
+        setAnswerStyleA({}),
+        setAnswerTextStyleA({}),        
+        setVariantStyleA({})
 
-        } else {
-            setRight(right + 1)
-            new Audio('rightAudio.mp3').play()
-        }
-        setNextBtnDisabled(false);
-        
+        setAnswerStyleB({}),
+        setAnswerTextStyleB({}),        
+        setVariantStyleB({})
+
+        setAnswerStyleC({}),
+        setAnswerTextStyleC({}),        
+        setVariantStyleC({})
+
+        setAnswerStyleD({}),
+        setAnswerTextStyleD({}),        
+        setVariantStyleD({})
     }
-    
-    const handleNextClick = () => {
-        setProgressPercent(progressPercent + 10)
-        setLessonNumberRender(lessonNumberRender + 1);
-        setLessonNumber(lessonNumber + 1);
-        setNextBtnDisabled(true);
-        setSelectedAnswer('');
-        setSelectedVariant('')
+}, [wrong, lessonNumberRender])
+
+
+// Right
+React.useEffect(() => {
+    if(selectedVariant == 'a') {
+        setAnswerStyleA({
+            border: '2px solid #039134',
+            color: '#039134',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
+
+        setAnswerTextStyleA({
+            color: '#039134'
+        }),
+
+        setVariantStyleA({
+            border: '2px solid #039134',
+            color: '#039134'
+        })
+    } else if (selectedVariant == 'b') {
+        setAnswerStyleB({
+            border: '2px solid #039134',
+            color: '#039134',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
+
+        setAnswerTextStyleB({
+            color: '#039134'
+        }),
+
+        setVariantStyleB({
+            border: '2px solid #039134',
+            color: '#039134'
+        })
+    } else if (selectedVariant == 'c') {
+        setAnswerStyleC({
+            border: '2px solid #039134',
+            color: '#039134',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
+
+        setAnswerTextStyleC({
+            color: '#039134'
+        }),
+
+        setVariantStyleC({
+            border: '2px solid #039134',
+            color: '#039134'
+        }) 
+    } else if(selectedVariant == 'd') {
+        setAnswerStyleD({
+            border: '2px solid #039134',
+            color: '#039134',
+            background: '#FFF',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        }),
+
+        setAnswerTextStyleD({
+            color: '#039134'
+        }),
+
+        setVariantStyleD({
+            border: '2px solid #039134',
+            color: '#039134'
+        })  
+    } else {
+        setAnswerStyleA({}),
+        setAnswerTextStyleA({}),        
+        setVariantStyleA({})
+
+        setAnswerStyleB({}),
+        setAnswerTextStyleB({}),        
+        setVariantStyleB({})
+
+        setAnswerStyleC({}),
+        setAnswerTextStyleC({}),        
+        setVariantStyleC({})
+
+        setAnswerStyleD({}),
+        setAnswerTextStyleD({}),        
+        setVariantStyleD({})
+    }
+}, [right, lessonNumberRender])
+
+const handleConfirmClick = (rightAns) => {
+    if(selectedAnswer !== rightAns) {
+        setWrong(wrong + 1)
+        new Audio('wrongAudio.mp3').play()
+
+    } else {
+        setRight(right + 1)
+        new Audio('rightAudio.mp3').play()
+    }
+    setNextBtnDisabled(false);
+}
+
+const handleWelcome = (e) => {
+    setWelcome(e)
+}
+
+const handleExit = (e) => {
+    setExit(e)
+}
+
+const handleNextClick = () => {
+    setLessonNumberRender(lessonNumberRender + 1);
+    setLessonNumber(lessonNumber + 1);
+    setProgressPercent(progressPercent + 10)
+    setNextBtnDisabled(true);
+    setSelectedAnswer('');
+    setSelectedVariant('');
+    setClicked(false);
+
+    if(lessonNumberRender == 9) {
+        setGoodBye(true)
     }
 
+}
+
+// // Selected
+// React.useEffect(() => {
+//     if(selectedVariant == 'a') {
+//         setAnswerStyleA({
+//            borderColor: '#437CA4'  
+//         }) 
+//     } else {
+//         setAnswerStyleA({})
+//     }
+// }, [selectedVariant])
+
+const handleThanks = (thanks, feedback) => {
+    setThanks(thanks),
+    setFeedback(feedback)
+}
+
+// const handleAnswerClick = (answer, variant) => {
+//     setSelectedAnswer(answer);
+//     // if(selectedAnswer !== '')
+//     if(selectedVariant === '') {
+//         setSelectedVariant(variant)
+//     } else {
+//         return
+//     }
+// }
     return (
         <ParentDiv>
-            <MainDiv>
-                {/* Exit Button */}
-                <ExitButton>
-                    <img width='40' height='40' src='https://s3-alpha-sig.figma.com/img/3439/cbdb/8e8a77b717b6c0cdddd72a3c84351bbb?Expires=1702252800&Signature=Ucky2hyiPSyCu6eVcHHhUqRG3HX14vcITIZT6xJtOXrLqsEHPBGS7ravOCbDb3qd0ixJW2Xg2Sn8kXdYe8zornkVUyvtsIceY1JvFIKjPwNFrvE7syEez6SfJwI3isV-umItu4gkr68bBOw31ASgjuoTHLPjsgJb1fkR70aeyHLoFdEjwSzXpYR5VuAVg8n7155eiPjLZBCgdxSNGgUIM4NeRJbyjIkjnrJdNkJCsqgEUVQFe35wuMDQxxgt7jvhr-mrYEFhFbYjWa0IAIU4JnjIQznqk7sIs-c1MdxRVIVJ3BXR8gjuknH8U4CZuEs1LNr7-8be~ExJ9wbGeGYPlA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'/>
-                    გასვლა
-                </ExitButton>
+        {welcome?
+        <Hello handleWelcome={handleWelcome}/>
+        :exit?
+        <Exit handleExit={handleExit}/>
+        :goodBye?
+        <Main>
+            <Modal>
 
-                {/* Progress */}
-                <ProgressDiv>
-                    <ProgressTitleDiv>
-                        <ProgressTitle>
-                            თქვენი პროგრესი
-                        </ProgressTitle>
-                        <ProgressTitle style={{fontSize: 22, fontWeight: 700}}>
-                            {progressPercent}%
-                        </ProgressTitle>
-                    </ProgressTitleDiv>
-                    <ProgressLine>
-                        <Progress style={{width: `${progressPercent}%`}}/>
-                    </ProgressLine>
-                </ProgressDiv>
+            <GoodByimg src="https://s3-alpha-sig.figma.com/img/57d8/4f11/6a5385bb9e79f82d080f90295f5cb366?Expires=1702252800&Signature=KDuWjXW7t1szXZOUR8gkWFHXrK55FbLyeA0co2mH5TlYEe7smmNcOtAMZ~pK6GOMfIyEXNwB4gIbFqXf57VtOQ2979gksoYVYT38U-WJqliIOKcTosiTvme68f28TUyOQaFoJiWNpJO9235LAlypJ-hZ5-B1vaWowAGLAPzY7AUuACLRnaoECtMX~G43Uvdg45Gn0m~DcBxVzVJyxl~1U7U8jFTvJ51idgZwzTpvAATKT5IRNK8DxkLa3Ao1MD7C0bZfeFXXlds~2Cy2KZdZhGXFZZ3wanSkhFLgfD38ikNx3cIHnReGH8bc2Y3Zp1F6gxXai2SpDdg84TzZHv1Ydg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" />
 
-                {/* Answer */}
-                <AnswerContainer>
-                    <RightAnswer>
-                        {right}
-                    </RightAnswer>
-                    <WrongAnswer>
-                        {wrong}
-                    </WrongAnswer>
-                </AnswerContainer>
+            <Title>გილოცავთ, თქვენ გახდით სიფრთხილე და კრიტიკული აზროვნების კურსდამთავრებული.</Title>
 
-                {/* Lesson */}
-                {LessonData.map(current => {
-                    if(current.id === lessonNumber) {
-                        return (
-                            <LessonContainer>
-                            <LessonNumberTitle>
-                                გაკვეთილი {lessonNumberRender}
-                            </LessonNumberTitle>
-                            {/* Title */}
-                            <LessonTitle>
-                                {current.title}
-                            </LessonTitle>
-                            {/* Content */}
-                            <LessonText>
-                                {current.content}
-                            </LessonText>
-                            {/* Question */}
-                            <QuestionTitle>
-                                შეკითხვა:
-                            </QuestionTitle>
-                            <Question>
-                                {current.question}
-                            </Question>
-                            {/* Answers */}
-                            <AnswerDiv style={answerStyleA}
-                             onClick={() => {setSelectedAnswer(current.answers.a), setSelectedVariant('a')}}>
-                                <VariantDiv style={variantStyleA}>
-                                    ა
-                                </VariantDiv>
-                                <Answer style={answerTextStyleA}>
-                                {current.answers.a}
-                                </Answer>
-                            </AnswerDiv>
+            <Text>
+                ერთი წუთით დაფიქრდით იმაზე, თუ რამდენად შორს წახვედით.
+                ფარული მნიშვნელობების გაშიფვრიდან დაწყებული, საზოგადოებაზე 
+                მედიის გავლენის გაგებამდე დამთავრებული. თქვენი ახლად აღმოჩენილი
+                უნარები გაძლევს საშუალებას, ჩაერთო მედიის შინაარსთან ინფორმირებული,
+                გააზრებული და ცნობიერი გზით.
+                მედიაწიგნიერებით შეიარაღებული სამყაროში შესვლისას დაფიქრდით,
+                როგორ შეგიძლიათ გამოიყენოთ თქვენი ცოდნა პირად და პროფესიულ ცხოვრებაში.
+                იქნება ეს ახალი ამბების წყაროებში ნავიგაცია, ონლაინ დისკუსიებში წვლილი,
+                თუ მედია კონტენტის პასუხისმგებლობით შექმნა,
+                ახლა თქვენ ფლობთ ინსტრუმენტებს პოზიტიური გავლენის მოსატანად. წარმატებებს გისურვებთ!
+            </Text>
 
-                            <AnswerDiv style={answerStyleB}
-                             onClick={() => {setSelectedAnswer(current.answers.b), setSelectedVariant('b')}}>
-                                <VariantDiv style={variantStyleB}>
-                                    ბ
-                                </VariantDiv>
-                                <Answer style={answerTextStyleB}>
-                                {current.answers.b}
-                                </Answer>
-                            </AnswerDiv>
+            <Buttons>
+                <Link to='/'>
+                    <Mtavari>მთავარი</Mtavari>                
+                </Link>
+                <Rate onClick={() => {setGoodBye(false), setFeedback(true)}}>შეფასება</Rate>
+            </Buttons>
 
-                            <AnswerDiv style={answerStyleC}
-                             onClick={() => {setSelectedAnswer(current.answers.c), setSelectedVariant('c')}}>
-                                <VariantDiv style={variantStyleC}>
-                                    გ
-                                </VariantDiv>
-                                <Answer style={answerTextStyleC}>
-                                {current.answers.c}
-                                </Answer>
-                            </AnswerDiv>
+        </Modal>
+      </Main>:
+      feedback?
+            <Feedback handleThanks={handleThanks}/>
+    : thanks?
+            <Thanks/>
 
-                            <AnswerDiv style={answerStyleD}
-                             onClick={() => {setSelectedAnswer(current.answers.d), setSelectedVariant('d')}}>
-                                <VariantDiv style={variantStyleD}>
-                                    დ
-                                </VariantDiv>
-                                <Answer style={answerTextStyleD}> 
-                                {current.answers.d}
-                                </Answer>
-                            </AnswerDiv>
+     : <ParentDiv>
+                <Header/>
+                  <MainDiv>
+                  {/* Exit Button */}
+                  {/* <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'> */}
+                      <ExitButton onClick={() => setExit(true)}>
+                          <img width='40' height='40' src='https://s3-alpha-sig.figma.com/img/3439/cbdb/8e8a77b717b6c0cdddd72a3c84351bbb?Expires=1702252800&Signature=Ucky2hyiPSyCu6eVcHHhUqRG3HX14vcITIZT6xJtOXrLqsEHPBGS7ravOCbDb3qd0ixJW2Xg2Sn8kXdYe8zornkVUyvtsIceY1JvFIKjPwNFrvE7syEez6SfJwI3isV-umItu4gkr68bBOw31ASgjuoTHLPjsgJb1fkR70aeyHLoFdEjwSzXpYR5VuAVg8n7155eiPjLZBCgdxSNGgUIM4NeRJbyjIkjnrJdNkJCsqgEUVQFe35wuMDQxxgt7jvhr-mrYEFhFbYjWa0IAIU4JnjIQznqk7sIs-c1MdxRVIVJ3BXR8gjuknH8U4CZuEs1LNr7-8be~ExJ9wbGeGYPlA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'/>
+                          გასვლა
+                      </ExitButton>
+                  {/* </Link> */}
+  
+  
+                  {/* Progress */}
+                  <ProgressDiv>
+                      <ProgressTitleDiv>
+                          <ProgressTitle>
+                              თქვენი პროგრესი
+                          </ProgressTitle>
+                          <ProgressTitle style={{fontSize: 22, fontWeight: 700}}>
+                              {progressPercent}%
+                          </ProgressTitle>
+                      </ProgressTitleDiv>
+                      <ProgressLine>
+                          <Progress style={{width: `${progressPercent}%`}}/>
+                      </ProgressLine>
+                  </ProgressDiv>
+  
+                  {/* Answer */}
+                  <AnswerContainer>
+                      <RightAnswer>
+                          {right}
+                      </RightAnswer>
+                      <WrongAnswer>
+                          {wrong}
+                      </WrongAnswer>
+                  </AnswerContainer>
+  
+                  {/* Lesson */}
+                  {LessonData.map(current => {
+                      if(current.id === lessonNumber) {
+                          return (
+                              <LessonContainer>
+                              <LessonNumberTitle>
+                                  გაკვეთილი {lessonNumberRender}
+                              </LessonNumberTitle>
+                              {/* Title */}
+                              <LessonTitle>
+                                  {current.title}
+                              </LessonTitle>
+                              {/* Content */}
+                              <LessonText>
+                                  {current.content}
+                              </LessonText>
+                              {/* Question */}
+                              <QuestionTitle>
+                                  შეკითხვა:
+                              </QuestionTitle>
+                              <Question>
+                                  {current.question}
+                              </Question>
+                              {/* Answers */}
+                              <AnswerDiv style={answerStyleA}
+                               onClick={() => {setSelectedAnswer(current.answers.a), setSelectedVariant('a')}}>
+                                  <VariantDiv style={variantStyleA}>
+                                      ა
+                                  </VariantDiv>
+                                  <Answer style={answerTextStyleA}>
+                                  {current.answers.a}
+                                  </Answer>
+                              </AnswerDiv>
+  
+                              <AnswerDiv style={answerStyleB}
+                               onClick={() => {setSelectedAnswer(current.answers.b), setSelectedVariant('b')}}>
+                                  <VariantDiv style={variantStyleB}>
+                                      ბ
+                                  </VariantDiv>
+                                  <Answer style={answerTextStyleB}>
+                                  {current.answers.b}
+                                  </Answer>
+                              </AnswerDiv>
+  
+                              <AnswerDiv style={answerStyleC}
+                               onClick={() => {setSelectedAnswer(current.answers.c), setSelectedVariant('c')}}>
+                                  <VariantDiv style={variantStyleC}>
+                                      გ
+                                  </VariantDiv>
+                                  <Answer style={answerTextStyleC}>
+                                  {current.answers.c}
+                                  </Answer>
+                              </AnswerDiv>
+  
+                              <AnswerDiv style={answerStyleD}
+                               onClick={() => {setSelectedAnswer(current.answers.d), setSelectedVariant('d')}}>
+                                  <VariantDiv style={variantStyleD}>
+                                      დ
+                                  </VariantDiv>
+                                  <Answer style={answerTextStyleD}> 
+                                  {current.answers.d}
+                                  </Answer>
+                              </AnswerDiv>
+  
+                              {/* Confirm */}
+                              <ConfirmDiv>
+                              {selectedAnswer === ''?
+                              <DisabledConfirmButton disabled>
+                                  დადასტურება
+                              </DisabledConfirmButton>
+                              : selectedAnswer !== '' && clicked?
+                              <ConfirmButton disabled >
+                                  დადასტურება
+                              </ConfirmButton>:
+                              <ConfirmButton onClick={() => {handleConfirmClick(current.right), setClicked(true)}} >
+                                  დადასტურება
+                              </ConfirmButton>
+                              } 
+                              
+                              </ConfirmDiv>
+                          </LessonContainer> 
+                          )
+                      }
+                  })}
+              </MainDiv>
+  
+              {/* Footer */}
+              <FooterDiv>
+                  {/* Back Button */}
+                  {lessonNumber == 0? 
+                  <DisabledBackButton>
+                      <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
+                      უკან
+                  </DisabledBackButton>
+                  :<BackButton onClick={() => {setLessonNumberRender(lessonNumberRender - 1), setLessonNumber(lessonNumber - 1)}}>
+                      <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
+                      უკან
+                  </BackButton>}
+  
+                  {/* Next Button */}
+                  {nextBtnDisabled? 
+                  <DisabledNextButton>
+                      შემდეგი
+                      <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+                  </DisabledNextButton>
+                  :<NextButton onClick={() => handleNextClick()}>
+                      შემდეგი
+                      <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+                  </NextButton>}
+              </FooterDiv>
+            </ParentDiv>
+      }
 
-                            {/* Confirm */}
-                            <ConfirmDiv>
-                            {selectedAnswer === ''?
-                            <DisabledConfirmButton disabled>
-                                დადასტურება
-                            </DisabledConfirmButton>
-                            : clicked?
-                            <ConfirmButton disabled >
-                                დადასტურება
-                            </ConfirmButton>:
-                            <ConfirmButton onClick={() => {handleConfirmClick(current.right), setClicked(true)}} >
-                                დადასტურება
-                            </ConfirmButton>
-                            } 
-                            
-                            </ConfirmDiv>
-                        </LessonContainer> 
-                        )
-                    }
-                })}
-            </MainDiv>
-
-            {/* Footer */}
-            <FooterDiv>
-                {/* Back Button */}
-                {lessonNumber == 0? 
-                <DisabledBackButton>
-                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
-                    უკან
-                </DisabledBackButton>
-                :<BackButton onClick={() => {setLessonNumberRender(lessonNumberRender - 1), setLessonNumber(lessonNumber - 1)}}>
-                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg>
-                    უკან
-                </BackButton>}
-
-                {/* Next Button */}
-                {nextBtnDisabled? 
-                <DisabledNextButton>
-                    შემდეგი
-                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-                </DisabledNextButton>
-                :<NextButton onClick={() => handleNextClick()}>
-                    შემდეგი
-                    <svg style={{marginBottom: 4}} xmlns="http://www.w3.org/2000/svg" height="20" width="35" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
-                </NextButton>}
-            </FooterDiv>
         </ParentDiv>
     )
 }
@@ -659,6 +757,119 @@ const DisabledBackButton = styled(DisabledNextButton)`
     padding: 5px 24px 0 14px;
     filter: unset;
 `
+
+// Goodbye
+const ModalParent = styled(ParentDiv);
+
+const Main = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.52);
+`;
+
+  const Modal = styled.div`
+    position: absolute;
+    max-width: 1156px;
+    width: 100%;
+    height: 814px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+  const GoodByimg = styled.img`
+    width: 757px;
+    height: 399px;
+  `;
+
+  const Title = styled.h1`
+    margin-top: 18px;
+    color: #0E3757;
+
+    text-align: center;
+    font-family: 'ninomtavruli';
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  `;
+
+  const Text = styled.p`
+    margin-top: 19px;
+    max-width: 1092px;
+    width: 100%;
+    color: #0E3757;
+
+    text-align: center;
+    font-family: 'ninomtavruli';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+  `;
+
+  const Buttons = styled.div`
+    display: flex;
+    justify-content: space-between;
+    max-width: 406px;
+    width: 100%;
+    margin-top: 32px;
+  `;
+
+  const Mtavari = styled.button`
+    width: 166px;
+    height: 51px;
+    background-color: #437CA4;
+    border-radius: 4px;
+    filter: drop-shadow(0px -1px 4px rgba(0, 0, 0, 0.25)) drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    color: #FFF;
+
+    font-family: 'ninomtavruli';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff;
+      color: #437CA4;
+      border: 2px solid #729DBB;
+    }
+  `;
+
+  const Rate = styled.button`
+    width: 166px;
+    height: 51px;
+    background-color: #437CA4;
+    border-radius: 4px;
+    filter: drop-shadow(0px -1px 4px rgba(0, 0, 0, 0.25)) drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    color: #FFF;
+
+    font-family: 'ninomtavruli';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff;
+      color: #437CA4;
+      border: 2px solid #729DBB;
+    }
+  `;
+
+
 
 
 
