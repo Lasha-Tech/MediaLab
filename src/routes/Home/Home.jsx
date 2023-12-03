@@ -17,27 +17,54 @@ const divStyle = {
   height: "574px",
   marginBottom: "100px",
 };
+const divStyle2 = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundSize: "100%",
+  backgroundRepeat: "no-repeat",
+  height: "607px",
+  marginBottom: "100px",
+  backgroundposition: "center",
+}
+
 const slideImages = [
   {
-    url: "./img/book.png",
+    url: "./img/Group6.png",
     caption: "Slide 1",
   },
   {
-    url: "./img/brain.png",
+    url: "./img/Group7.png",
     caption: "Slide 2",
   },
   {
-    url: "./img/brain.png",
+    url: "./img/Group8.png",
     caption: "Slide 3",
   },
 ];
-var settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
-};
+const slideImages2 = [
+  {
+    url: "./img/Group9.png",
+    caption: "Slide 1",
+  },
+  {
+    url: "./img/Group10.png",
+    caption: "Slide 2",
+  },
+  {
+    url: "./img/Group12.png",
+    caption: "Slide 3",
+  },
+];
+const NextArrows = (props) => (
+  <div className="slick-arrow slick-next">{props.children}</div>
+);
+
+const PrevArrows = (props) => (
+  <div className="slick-arrow slick-prev">{props.children}</div>
+);
+
+
 const CardData = [
     {
         title:'სიფრთხილე და კრიტიკული აზროვნება',
@@ -61,9 +88,19 @@ const CardData = [
         people:444
     }
 ]
-function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
+function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NextArrows>{">"}</NextArrows>, 
+    prevArrow: <PrevArrows>{"<"}</PrevArrows>, 
+  };
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide1, setCurrentSlide2] = useState(0);
   return (
     <ParentDiv>
       <HomeContainer>
@@ -164,7 +201,7 @@ function Home() {
                     <PopularCardSpanStyles>{res.signal}</PopularCardSpanStyles>
                 </Flex>
             </PopularBottomWrapper>
-            <PopularCardButton>Learn More</PopularCardButton>
+            
 <PopularCardBlur></PopularCardBlur>
           </PopularCard>
                    </> 
@@ -174,39 +211,69 @@ function Home() {
         </PopularWrapper>
       </PopularCourses>
 
-
-      <Slider {...settings}>
-      <div style={{margin:"50px"}}>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
+{/* <SlickWrapper >
+<Slider {...settings}>
+<div style={{height:'100px',backgroundColor:'blue'}}>
+<p>awdawdawdawdawdawd</p>
+</div>
     </Slider>
-      {/* <Footer/> */}
+</SlickWrapper> */}
+  <SliderContainer>
+        <SliderText>ჩვენი მომხამრებლების შეფასებები</SliderText>
+      </SliderContainer>
+   <SliderContainerWrapper >
+     
+        <Slide
+          // prevArrow={<NextArrow1>{"<"}</NextArrow1>}
+          // nextArrow={<PrevArrow2>{">"}</PrevArrow2>}
+          onChange={(previous, next) => setCurrentSlide2(next)}
+        >
+          {slideImages2.map((slideImage, index) => (
+            <div key={index} style={{ position: "relative" }}>
+              <div
+                style={{
+                  ...divStyle2,
+                  backgroundImage: `url(${slideImage.url})`,
+                }}
+              ></div>
+            </div>
+          ))}
+          
+          
+                  </Slide>
+
+        
+      </SliderContainerWrapper>
+      <DotsWrapper2>
+          {slideImages2.map((_, index) => (
+            <Dot2 key={index} active={index === currentSlide1} />
+          ))}
+        </DotsWrapper2>
+      <Footer/>
     </ParentDiv>
   );
 }
 
 const ParentDiv = styled.div`
   width: 100%;
+  .wrap {
+    width: 1280px;
+height: 534px;
+flex-shrink: 0;
+background: #437CA4;
+margin-left: 80px;
+  }
 `;
 const HomeContainer = styled.div`
   background: #0e3757;
   height: 815px;
 `;
+const SlickWrapper = styled.div`
+width: 80%;
+height: 500px;
+margin-left: 100px;
+background-color: red;
+`
 const Wrapper = styled.div`
   padding-left: 80px;
   display: flex;
@@ -298,6 +365,35 @@ const PrevArrow = styled(ArrowButton)`
   width: 32px;
   height: 32px;
   margin-left: 40px;
+
+`;
+const NextArrow1 = styled(ArrowButton)`
+  background-image: url("./img/left.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+
+  margin-left: 12%;
+  margin-bottom: 15%;
+  width: 100px;
+height: 100px;
+flex-shrink: 0;
+background-color: #8EABC0;
+`;
+
+const PrevArrow2 = styled(ArrowButton)`
+  background-image: url("./img/rigth.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 5%;
+  margin-bottom: 15%;
+  width: 100px;
+height: 100px;
+flex-shrink: 0;
+background-color: #8EABC0;
 `;
 const DotsWrapper = styled.div`
     position: absolute;
@@ -305,13 +401,30 @@ const DotsWrapper = styled.div`
     top: 67%;
     z-index: 9999999999;
 `;
+const DotsWrapper2 = styled.div`
+
+display: flex;
+justify-content: center;
+position: relative;
+bottom: 60px;
+`;
 const Dot = styled.span`
   height: 4px;
   width: 32px;
-  background-color: ${({ active }) => (active ? "#FFF" : "#888")};
+  background-color: ${({ active }) => (active ? "#fff" : "#336377")};
   margin: 0 5px;
   display: inline-block;
   cursor: pointer;
+
+`;
+const Dot2 = styled.span`
+  height: 8px;
+  width: 8px;
+  background-color: ${({ active }) => (active ? "#0E3757" : "#B4D5E4")};
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius:50% ;
 `;
 const PopularCourses = styled.div`
   background: #0e3757;
